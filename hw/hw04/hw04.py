@@ -12,19 +12,28 @@ def deep_len(lst):
     6
     """
     "*** YOUR CODE HERE ***"
+    if len(lst) == 0:
+        return 0
+    if type(lst[0]) == list:
+        return deep_len(lst[0]) + deep_len(lst[1:])
+    else:
+        return 1 + deep_len(lst[1:])
 
 
 def interval(a, b):
     """Construct an interval from a to b."""
     "*** YOUR CODE HERE ***"
+    return [min(a, b), max(a, b)]
 
 def lower_bound(x):
     """Return the lower bound of interval x."""
     "*** YOUR CODE HERE ***"
+    return x[0]
 
 def upper_bound(x):
     """Return the upper bound of interval x."""
     "*** YOUR CODE HERE ***"
+    return x[1]
 
 def str_interval(x):
     """Return a string representation of interval x.
@@ -69,6 +78,7 @@ def div_interval(x, y):
     AssertionError
     """
     "*** YOUR CODE HERE ***"
+    assert upper_bound(y) * lower_bound(y) >= 0
     reciprocal_y = interval(1/upper_bound(y), 1/lower_bound(y))
     return mul_interval(x, reciprocal_y)
 
@@ -80,6 +90,8 @@ def sub_interval(x, y):
     '-9 to -2'
     """
     "*** YOUR CODE HERE ***"
+    return interval(lower_bound(x) - upper_bound(y), 
+                    upper_bound(x) - lower_bound(y))
 
 def par1(r1, r2):
     return div_interval(mul_interval(r1, r2), add_interval(r1, r2))
@@ -106,6 +118,14 @@ def quadratic(x, a, b, c):
     '0 to 10'
     """
     "*** YOUR CODE HERE ***"
+    extremum = -b / (2 * a)
+    f = lambda x: a * x * x + b * x + c
+    k, m, n = map(f, [extremum, lower_bound(x), upper_bound(x)])
+    if extremum > lower_bound(x) and extremum < upper_bound(x):
+        return interval(min(k, m, n), max(k, m, n))
+    else:
+        return interval(min(m, n), max(m, n))
+
 
 def polynomial(x, c):
     """Return the interval that is the range of the polynomial defined by
