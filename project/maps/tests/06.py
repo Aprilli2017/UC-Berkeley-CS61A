@@ -5,7 +5,7 @@ test = {
     {
       'cases': [
         {
-          'answer': '082859039c31d47c7289fe580f195935',
+          'answer': 'create a cluster for each centroid consisting of all elements closest to that centroid.',
           'choices': [
             'randomly initialize k centroids',
             r"""
@@ -15,14 +15,14 @@ test = {
             'find the centroid (average position) of each cluster.'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': r"""
           What is the first step of the iterative portion of the
           k-means algorithm?
           """
         },
         {
-          'answer': '805cc5fdbc962de6ce1fb691ed01ab75',
+          'answer': 'zip(xs, ys)',
           'choices': [
             'xs + ys',
             '(xs, ys)',
@@ -30,7 +30,7 @@ test = {
             'zip(xs, ys)'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': r"""
           Consider the lists xs = [6, 1, 4] and ys = [2, 6, 2]. Which
           of the choices below for EXPR would produce the following

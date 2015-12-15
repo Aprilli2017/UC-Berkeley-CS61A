@@ -47,7 +47,7 @@ def user_reviewed_restaurants(user, restaurants):
     user -- a user
     restaurants -- a list of restaurant data abstractions
     """
-    names = list(user_reviews(user))
+    names = list(user_reviews(user)) # dict->list, get a list whose element is dicts key
     return [r for r in restaurants if restaurant_name(r) in names]
 
 def user_rating(user, restaurant_name):
@@ -71,6 +71,7 @@ def make_restaurant(name, location, categories, price, reviews):
         'location': location,
         'categories': categories,
         'price': price,
+        "ratings": [review_rating(r) for r in reviews]
     }
 
 def restaurant_name(restaurant):
@@ -95,6 +96,7 @@ def restaurant_ratings(restaurant):
     restaurant based on the reviews of the restaurant."""
     # BEGIN Question 1
     "*** REPLACE THIS LINE ***"
+    return restaurant['ratings']
     # END Question 1
 
 
@@ -104,10 +106,12 @@ def restaurant_num_ratings(restaurant):
     """Return the number of ratings for restaurant."""
     # BEGIN Question 2
     "*** REPLACE THIS LINE ***"
+    return len(restaurant_ratings(restaurant))
     # END Question 2
 
 def restaurant_mean_rating(restaurant):
     """Return the average rating for restaurant."""
     # BEGIN Question 2
     "*** REPLACE THIS LINE ***"
+    return mean(restaurant_ratings(restaurant))
     # END Question 2
