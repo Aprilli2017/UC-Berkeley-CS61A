@@ -1,3 +1,4 @@
+*.scm
 scheme
 *.pdf
 *.py
